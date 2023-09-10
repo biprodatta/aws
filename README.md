@@ -18,3 +18,7 @@ https://aws.amazon.com/blogs/aws/aws-database-migration-service/
 
 
 https://www.blazemeter.com/blog/how-to-integrate-your-github-repository-to-your-jenkins-project/
+
+
+## attach a ebs to a ec2 link :
+http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-using-volumes.html
