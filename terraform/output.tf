@@ -21,3 +21,7 @@ output "endpoint" {
 output "kubeconfig-certificate-authority-data" {
   value = module.eks_cluster.kubeconfig-certificate-authority-data
 }
+
+output "eks_cluster_version" {
+  value = module.eks_cluster.eks_cluster_version
+}
