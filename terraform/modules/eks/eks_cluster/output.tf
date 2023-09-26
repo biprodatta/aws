@@ -9,3 +9,7 @@ output "kubeconfig-certificate-authority-data" {
 output "eks_cluster_version" {
   value = aws_eks_cluster.eks_cluster.version
 }
+
+output "cluster_name" {
+  value = aws_eks_cluster.eks_cluster.name
+}
