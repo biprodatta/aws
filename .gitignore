@@ -33,3 +33,4 @@ override.tf.json
 .terraformrc
 terraform.rc
 .DS_Store
+github_actions/enforce-jira.yaml
