@@ -1,0 +1,7 @@
+terraform {
+  backend "s3" {
+    bucket = "bipro-s3bucket"
+    key    = "aws_tf_state_files/terraform.tfstate"
+    region = "us-east-1"
+  }
+}

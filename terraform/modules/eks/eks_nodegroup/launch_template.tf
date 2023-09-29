@@ -1,4 +1,5 @@
 # Launch Template Resource
+/*
 resource "aws_launch_template" "my_launch_template" {
   name = "ng_launch_template"
   description = "eks node group Launch Template"
@@ -31,3 +32,4 @@ resource "aws_launch_template" "my_launch_template" {
     }
   }
 }
+*/
