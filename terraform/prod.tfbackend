@@ -1,0 +1,3 @@
+bucket = "bipro-s3bucket"
+key    = "aws_tf_state_files/terraform_prod.tfstate"
+region = "us-east-2"
