@@ -27,7 +27,7 @@ jobs:
         with:
           aws-access-key-id: ${{ secrets.MY_DEV_AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.MY_DEV_AWS_SECRET_ACCESS_KEY }}
-          aws-region: us-east-1
+          aws-region: us-east-2
 
       - name: Write local tfvars
         shell: bash
@@ -61,7 +61,7 @@ jobs:
         with:
           aws-access-key-id: ${{ secrets.MY_CERT_AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.MY_CERT_AWS_SECRET_ACCESS_KEY }}
-          aws-region: us-east-1
+          aws-region: us-east-2
 
       - name: Write local tfvars
         shell: bash
@@ -135,7 +135,7 @@ jobs:
         with:
           aws-access-key-id: ${{ secrets.MY_DEV_AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.MY_DEV_AWS_SECRET_ACCESS_KEY }}
-          aws-region: us-east-1
+          aws-region: us-east-2
 
       - name: Write local tfvars
         shell: bash
@@ -168,7 +168,7 @@ jobs:
         with:
           aws-access-key-id: ${{ secrets.MY_CERT_AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.MY_CERT_AWS_SECRET_ACCESS_KEY }}
-          aws-region: us-east-1
+          aws-region: us-east-2
 
       - name: Write local tfvars
         shell: bash
@@ -202,7 +202,7 @@ jobs:
         with:
           aws-access-key-id: ${{ secrets.MY_PROD_AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.MY_PROD_AWS_SECRET_ACCESS_KEY }}
-          aws-region: us-east-1
+          aws-region: us-east-2
 
       - name: Write local tfvars
         shell: bash
