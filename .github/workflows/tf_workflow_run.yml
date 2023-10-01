@@ -66,7 +66,7 @@ jobs:
       - name: Write local tfvars
         shell: bash
         env:
-          TF_VARS_JSON: ${{ secrets.TF_VARS_JSON_STAGING }}
+          TF_VARS_JSON: ${{ secrets.TF_VARS_JSON_CERT }}
         run: |
           echo $TF_VARS_JSON >> ./cert.tfvars.json
       
@@ -173,7 +173,7 @@ jobs:
       - name: Write local tfvars
         shell: bash
         env:
-          TF_VARS_JSON: ${{ secrets.TF_VARS_JSON_STAGING }}
+          TF_VARS_JSON: ${{ secrets.TF_VARS_JSON_CERT }}
         run: |
           echo $TF_VARS_JSON >> ./cert.tfvars.json
 
