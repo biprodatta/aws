@@ -13,113 +13,113 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  tf_plan_dev:
-    name: TF Plan Dev
-    runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: ./terraform
-    steps:
-      - uses: hashicorp/setup-terraform@v2
-      - uses: actions/checkout@v3
-      - name: Configure AWS Credentials
-        uses: aws-actions/configure-aws-credentials@v1
-        with:
-          aws-access-key-id: ${{ secrets.MY_DEV_AWS_ACCESS_KEY_ID }}
-          aws-secret-access-key: ${{ secrets.MY_DEV_AWS_SECRET_ACCESS_KEY }}
-          aws-region: us-east-2
+  # tf_plan_dev:
+  #   name: TF Plan Dev
+  #   runs-on: ubuntu-latest
+  #   defaults:
+  #     run:
+  #       working-directory: ./terraform
+  #   steps:
+  #     - uses: hashicorp/setup-terraform@v2
+  #     - uses: actions/checkout@v3
+  #     - name: Configure AWS Credentials
+  #       uses: aws-actions/configure-aws-credentials@v1
+  #       with:
+  #         aws-access-key-id: ${{ secrets.MY_DEV_AWS_ACCESS_KEY_ID }}
+  #         aws-secret-access-key: ${{ secrets.MY_DEV_AWS_SECRET_ACCESS_KEY }}
+  #         aws-region: us-east-2
 
-      - name: Write local tfvars
-        shell: bash
-        env:
-          TF_VARS_JSON: ${{ secrets.TF_VARS_JSON_DEV }}
-        run: |
-          echo $TF_VARS_JSON >> ./dev.tfvars.json
+  #     - name: Write local tfvars
+  #       shell: bash
+  #       env:
+  #         TF_VARS_JSON: ${{ secrets.TF_VARS_JSON_DEV }}
+  #       run: |
+  #         echo $TF_VARS_JSON >> ./dev.tfvars.json
       
-      - name: Terraform Init Dev
-        run: terraform init -reconfigure -backend-config=dev.tfbackend
+  #     - name: Terraform Init Dev
+  #       run: terraform init -reconfigure -backend-config=dev.tfbackend
     
-      - name: Terraform Validate Dev
-        run: terraform validate
-      - name : Terraform Format Dev
-        run: terraform fmt
-      - name: Terraform Plan Dev
-        run: terraform plan -input=false --var-file=dev.tfvars.json            
+  #     - name: Terraform Validate Dev
+  #       run: terraform validate
+  #     - name : Terraform Format Dev
+  #       run: terraform fmt
+  #     - name: Terraform Plan Dev
+  #       run: terraform plan -input=false --var-file=dev.tfvars.json            
 
-  tf_plan_cert:
-    name: TF Plan Cert
-    needs: [tf_plan_dev]
-    runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: ./terraform
-    steps:
-      - uses: hashicorp/setup-terraform@v2
-      - uses: actions/checkout@v3
-      - name: Configure AWS Credentials
-        uses: aws-actions/configure-aws-credentials@v1
-        with:
-          aws-access-key-id: ${{ secrets.MY_CERT_AWS_ACCESS_KEY_ID }}
-          aws-secret-access-key: ${{ secrets.MY_CERT_AWS_SECRET_ACCESS_KEY }}
-          aws-region: us-east-2
+  # tf_plan_cert:
+  #   name: TF Plan Cert
+  #   needs: [tf_plan_dev]
+  #   runs-on: ubuntu-latest
+  #   defaults:
+  #     run:
+  #       working-directory: ./terraform
+  #   steps:
+  #     - uses: hashicorp/setup-terraform@v2
+  #     - uses: actions/checkout@v3
+  #     - name: Configure AWS Credentials
+  #       uses: aws-actions/configure-aws-credentials@v1
+  #       with:
+  #         aws-access-key-id: ${{ secrets.MY_CERT_AWS_ACCESS_KEY_ID }}
+  #         aws-secret-access-key: ${{ secrets.MY_CERT_AWS_SECRET_ACCESS_KEY }}
+  #         aws-region: us-east-2
 
-      - name: Write local tfvars
-        shell: bash
-        env:
-          TF_VARS_JSON: ${{ secrets.TF_VARS_JSON_CERT }}
-        run: |
-          echo $TF_VARS_JSON >> ./cert.tfvars.json
+  #     - name: Write local tfvars
+  #       shell: bash
+  #       env:
+  #         TF_VARS_JSON: ${{ secrets.TF_VARS_JSON_CERT }}
+  #       run: |
+  #         echo $TF_VARS_JSON >> ./cert.tfvars.json
       
-      - name: Terraform Init Cert
-        run: terraform init -reconfigure -backend-config=cert.tfbackend
+  #     - name: Terraform Init Cert
+  #       run: terraform init -reconfigure -backend-config=cert.tfbackend
     
-      - name: Terraform Validate Cert
-        run: terraform validate
+  #     - name: Terraform Validate Cert
+  #       run: terraform validate
     
-      - name: Terraform Plan Cert
-        run: terraform plan -input=false --var-file=cert.tfvars.json
+  #     - name: Terraform Plan Cert
+  #       run: terraform plan -input=false --var-file=cert.tfvars.json
 
-  tf_plan_prod:
-    name: TF Plan Prod
-    needs: [tf_plan_cert]
-    runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: ./terraform
-    steps:
-      - uses: hashicorp/setup-terraform@v2
-      - uses: actions/checkout@v3
-      - name: Configure AWS Credentials
-        uses: aws-actions/configure-aws-credentials@v1
-        with:
-          aws-access-key-id: ${{ secrets.MY_PROD_AWS_ACCESS_KEY_ID }}
-          aws-secret-access-key: ${{ secrets.MY_PROD_AWS_SECRET_ACCESS_KEY }}
-          aws-region: us-east-2
+  # tf_plan_prod:
+  #   name: TF Plan Prod
+  #   needs: [tf_plan_cert]
+  #   runs-on: ubuntu-latest
+  #   defaults:
+  #     run:
+  #       working-directory: ./terraform
+  #   steps:
+  #     - uses: hashicorp/setup-terraform@v2
+  #     - uses: actions/checkout@v3
+  #     - name: Configure AWS Credentials
+  #       uses: aws-actions/configure-aws-credentials@v1
+  #       with:
+  #         aws-access-key-id: ${{ secrets.MY_PROD_AWS_ACCESS_KEY_ID }}
+  #         aws-secret-access-key: ${{ secrets.MY_PROD_AWS_SECRET_ACCESS_KEY }}
+  #         aws-region: us-east-2
 
-      - name: Write local tfvars
-        shell: bash
-        env:
-          TF_VARS_JSON: ${{ secrets.TF_VARS_JSON_PROD }}
-        run: |
-          echo $TF_VARS_JSON >> ./prod.tfvars.json
+  #     - name: Write local tfvars
+  #       shell: bash
+  #       env:
+  #         TF_VARS_JSON: ${{ secrets.TF_VARS_JSON_PROD }}
+  #       run: |
+  #         echo $TF_VARS_JSON >> ./prod.tfvars.json
 
-      - name: tfsec
-        uses: aquasecurity/tfsec-action@v1.0.0
-        with:
-          soft_fail: true
+  #     - name: tfsec
+  #       uses: aquasecurity/tfsec-action@v1.0.0
+  #       with:
+  #         soft_fail: true
 
-      - name: Terraform Init Prod
-        run: terraform init -reconfigure -backend-config=prod.tfbackend
+  #     - name: Terraform Init Prod
+  #       run: terraform init -reconfigure -backend-config=prod.tfbackend
 
-      - name: Terraform Validate Prod
-        run: terraform validate
+  #     - name: Terraform Validate Prod
+  #       run: terraform validate
 
-      - name: Terraform Plan Prod
-        run: terraform plan -input=false --var-file=prod.tfvars.json
+  #     - name: Terraform Plan Prod
+  #       run: terraform plan -input=false --var-file=prod.tfvars.json
 
   apply_dev:
     name: TF Apply to Dev
-    needs: [tf_plan_prod]
+    # needs: [tf_plan_prod]
     runs-on: ubuntu-latest
     defaults:
       run:
@@ -148,7 +148,7 @@ jobs:
         run: terraform init -reconfigure -backend-config=dev.tfbackend
 
       - name: Terraform Apply
-        run: terraform plan -input=false --var-file=dev.tfvars.json -auto-approve
+        run: terraform plan -input=false --var-file=dev.tfvars.json
 
   apply_cert:
     name: TF Apply to Cert
@@ -181,7 +181,7 @@ jobs:
         run: terraform init -reconfigure -backend-config=cert.tfbackend
 
       - name: Terraform Apply
-        run: terraform plan -input=false --var-file=cert.tfvars.json -auto-approve
+        run: terraform plan -input=false --var-file=cert.tfvars.json
       
 
   apply_prod:
