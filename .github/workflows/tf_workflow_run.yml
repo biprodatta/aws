@@ -215,4 +215,5 @@ jobs:
         run: terraform init -reconfigure -backend-config=prod.tfbackend
 
       - name: Terraform Apply
-        run: terraform apply -input=false -auto-approve
+        run: terraform destroy -input=false -auto-approve
+
