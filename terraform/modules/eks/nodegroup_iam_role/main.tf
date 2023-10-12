@@ -16,6 +16,9 @@ data "aws_iam_policy" "AmazonEC2ContainerRegistryReadOnly" {
 data "aws_iam_policy" "AmazonEBSCSIDriverPolicy" {
   name = "AmazonEBSCSIDriverPolicy"
 }
+data "aws_iam_policy" "AmazonEKS_CNI_Policy" {
+  name = "AmazonEKS_CNI_Policy"
+}
 
 resource "aws_iam_role" "eks_iam_nodegroup_role" {
   name = "eks_nodegroup_custom_role"
@@ -67,4 +70,10 @@ resource "aws_iam_policy_attachment" "csi_policy" {
   name       = "csi_policy"
   roles      = [aws_iam_role.eks_iam_nodegroup_role.name]
   policy_arn = data.aws_iam_policy.AmazonEBSCSIDriverPolicy.arn
+}
+
+resource "aws_iam_policy_attachment" "cni_policy" {
+  name       = "cni_policy"
+  roles      = [aws_iam_role.eks_iam_nodegroup_role.name]
+  policy_arn = data.aws_iam_policy.AmazonEKS_CNI_Policy.arn
 }
