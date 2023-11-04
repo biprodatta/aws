@@ -1,0 +1,44 @@
+I have a playload for a client as below :
+
+{
+    "Rogers": {
+        "ClientId": "68758765789",
+        "ClientSecret": "g435uyg354u8t8tg3hfsbj",
+        "AuthenticationType": "SSO",
+        "ChannelType": "External",
+        "UserType": "Unknown",
+        "PriorityOrder": 1
+    }
+}
+
+also I have a json file containing all client details and client secret named, client_details.json.
+
+Please create a powershell script which will take the client name(Rogers, in this client playload example) 
+and search base client.json file and find same client, then check which "ChannelType = External", and update all value of it from input playload.
+
+#################### Solution Outline #########################
+
+below steps can be taken for implementing this:
+
+1) create input.json file and put the client playload in the file.
+
+2) create a file client_details.json, which contail your all client details.
+
+3) write a powershell script which will put client name, client id, client secret etc into seperate variables.
+
+4) use "jq" utility and search the client name which is same as playload client name.
+
+5) for that client,search all clild items and search for "ChannelType = External" , once find it,
+update all the parameter of it with playload values using previously stored variable.
+
+6) store the modified output in a seperate file named updated_client_details.json
+
+
+########### RUN THE SOLUTION ##############
+
+open powershell CLI and then got to script directory(for me /Users/biprodatta/Documents/GitHub/aws/automations), then run below command :
+
+./script.ps1
+
+
+then it will create a json file named "updated_client_details.json" with updated client details from input.json playload file.

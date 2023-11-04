@@ -1,0 +1,12 @@
+{
+    "Rogers": {
+        "ClientId": "68758765789",
+        "ClientSecret": "g435uyg354u8t8tg3hfsbj",
+        "AuthenticationType": "SSO",
+        "ChannelType": "External",
+        "UserType": "Unknown",
+        "PriorityOrder": 1
+    }
+
+
+}
