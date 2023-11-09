@@ -1,0 +1,86 @@
+{
+  "AppS3Bucket": "s3bucket",
+  "CryptoKey": "685r6554f7rtt87bnvm8",
+
+  "AccountSettings": [
+    {
+      "AccountId": "123",
+      "CustomizationKey": "Rogers",
+      "Channels": [        
+        {
+          "ClientId": "test1",
+          "ClientSecret": "53jh55387y8o98y",
+          "AuthenticationType": "SSO",
+          "ChannelType": "External",
+          "UserType": "Unknown",
+          "PriorityOrder": 1
+        },
+        {
+          "ClientId": "test2",
+          "ClientSecret": "76r6rit87t76t676t",
+          "AuthenticationType": "token",
+          "ChannelType": "ChatBot",
+          "UserType": "Subscriber",
+          "PriorityOrder": 1
+        }
+      ]
+    },
+    {
+      "AccountId": "456",
+      "CustomizationKey": "Fido",
+      "Channels": [        
+        {
+          "ClientId": "test3",
+          "ClientSecret": "785r7r678r77t7t",
+          "AuthenticationType": "SSO",
+          "ChannelType": "External",
+          "UserType": "Unknown",
+          "PriorityOrder": 1
+        },
+        {
+          "ClientId": "test4",
+          "ClientSecret": "64e657r79t8t33qrtd",
+          "AuthenticationType": "token",
+          "ChannelType": "ChatBot",
+          "UserType": "Subscriber",
+          "PriorityOrder": 1
+        }
+      ]
+    }
+  ],
+  "Serilog": {
+    "Using": [
+      "Serilog.Enrichers.Thread",
+      "Serilog.Expressions"
+    ],
+    "Enrich": [
+      "FromLogContext",
+      "LogCategory"
+    ],
+    "MinimumLevel": {
+      "Default": "Error",
+      "Override": {
+        "System": "Warning",
+        "Microsoft": "Warning"
+      }
+    },
+    "Filter": [
+      {
+        "Name": "ByExcluding",
+        "Args": {
+          "expression": ""
+        }
+      }
+    ],
+    "WriteTo": [
+      {
+        "Name": "Http",
+        "Args": {
+          "requestUri": ""
+        }
+      }
+    ]
+  },
+  "Authentication": {
+}
+}

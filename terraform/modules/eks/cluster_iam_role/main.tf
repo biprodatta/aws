@@ -14,6 +14,13 @@ data "aws_iam_policy" "AmazonEKSVPCResourceController" {
   name = "AmazonEKSVPCResourceController"
 }
 
+data "template_file" "aws_load_balancer_controller" {
+  template = file("${path.module}/iam_policy_latest.json")
+  vars = {
+  }
+
+}
+
 resource "aws_iam_role" "eks_iam_cluster_role" {
   name = "eks_cluster_custom_role"
   description = "Allows access to other AWS service resources that are required to operate clusters managed by EKS."
@@ -41,6 +48,12 @@ resource "aws_iam_policy" "passrole_policy" {
   policy      = data.aws_iam_policy_document.passrole.json
 }
 
+resource "aws_iam_policy" "aws_alb_controller_policy" {
+  name        = "aws_alb_controller_policy"
+  description = "aws_alb_controller_policy"
+  policy      = data.template_file.aws_load_balancer_controller.rendered
+}
+
 resource "aws_iam_policy_attachment" "cluster_passrole_policy" {
   name       = "cluster_policy_attachment"
   roles      = [aws_iam_role.eks_iam_cluster_role.name]
@@ -58,3 +71,4 @@ resource "aws_iam_policy_attachment" "cluster_main_policy" {
   roles      = [aws_iam_role.eks_iam_cluster_role.name]
   policy_arn = data.aws_iam_policy.AmazonEKSClusterPolicy.arn
 }
+

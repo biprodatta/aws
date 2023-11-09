@@ -1,15 +1,15 @@
-name: Assign PR Reviewers
+# name: Assign PR Reviewers
 
-on:
-  pull_request:
-    types:
-      - "opened"
-    branches: [main]
-    paths-ignore:
-      - "README.md"
+# on:
+#   pull_request:
+#     types:
+#       - "opened"
+#     branches: [main]
+#     paths-ignore:
+#       - "README.md"
 
-jobs:
-  assign_reviewers:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: kentaro-m/auto-assign-action@v1.1.2
+# jobs:
+#   assign_reviewers:
+#     runs-on: ubuntu-latest
+#     steps:
+#       - uses: kentaro-m/auto-assign-action@v1.1.2
