@@ -26,7 +26,7 @@ data "aws_subnet" "all_subnet" {
 
 
 resource "aws_eks_cluster" "eks_cluster" {
-  name     = "test"
+  name     = "mycluster"
   role_arn = var.role_arn
 
   vpc_config {
@@ -39,9 +39,9 @@ resource "aws_eks_cluster" "eks_cluster" {
 
 }
 
-### OIDC config
-resource "aws_iam_openid_connect_provider" "cluster" {
-  client_id_list  = ["sts.amazonaws.com"]
-  thumbprint_list = []
-  url             = aws_eks_cluster.eks_cluster.identity.0.oidc.0.issuer
-}
+# ### OIDC config
+# resource "aws_iam_openid_connect_provider" "cluster" {
+#   client_id_list  = ["sts.amazonaws.com"]
+#   thumbprint_list = []
+#   url             = aws_eks_cluster.eks_cluster.identity.0.oidc.0.issuer
+# }

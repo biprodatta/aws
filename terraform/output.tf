@@ -7,6 +7,9 @@ output "sg_id" {
 output "cluster_role_arn" {
   value = module.eks_iam_cluster_role.cluster_role_arn
 }
+output "alb_controller_policy_arn" {
+  value = module.eks_iam_cluster_role.alb_controller_policy_arn
+}
 
 # node group iam role related output:
 output "ng_role_arn" {

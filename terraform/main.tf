@@ -24,13 +24,6 @@ module "eks_cluster" {
   cluster_sg_id = module.eks_sg.sg_id
 }
 
-# module "eks_nodegroup" {
-#   source = "./modules/eks/eks_nodegroup"
-
-#   eks_cluster_version = module.eks_cluster.eks_cluster_version
-  
-# }
-
 module "eks_ng_working" {
   source = "./modules/eks/eks_ng_working"
 
@@ -40,3 +33,13 @@ module "eks_ng_working" {
   cluster_sg_id = module.eks_sg.sg_id
   
 }
+
+
+# module "route53" {
+#   source = "./modules/route53_and_acm"
+
+#   vpc_id = var.vpc_id
+#   lbname = var.lbname
+#   environment = var.environment
+  
+# }
