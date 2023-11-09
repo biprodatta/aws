@@ -69,3 +69,4 @@ curl -o iam_policy_latest.json https://raw.githubusercontent.com/kubernetes-sigs
 brew install kubergrunt
 
 kubergrunt eks oidc-thumbprint --issuer-url https://oidc.eks.us-east-2.amazonaws.com/id/EDB102942B5238492E4748A970E6F11A
+
